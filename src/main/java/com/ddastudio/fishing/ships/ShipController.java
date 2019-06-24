@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
+@RequestMapping("api/ships")
 public class ShipController {
 
     @GetMapping
@@ -11,7 +12,7 @@ public class ShipController {
         return Mono.just("GET Method : ships");
     }
 
-    @GetMapping
+    @GetMapping("{id}")
     public Mono<String> getShip(int id) {
         return Mono.just("GET Method : ship "+id);
     }

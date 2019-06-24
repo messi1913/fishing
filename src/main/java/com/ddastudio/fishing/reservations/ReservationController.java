@@ -19,7 +19,7 @@ public class ReservationController {
         return Mono.just("GET Method : Reservations");
     }
 
-    @GetMapping
+    @GetMapping("{id}")
     public Mono<String> getReservation(int id) {
         return Mono.just("GET Method : Reservation "+id);
     }

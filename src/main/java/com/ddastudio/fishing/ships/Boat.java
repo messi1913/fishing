@@ -1,5 +1,6 @@
 package com.ddastudio.fishing.ships;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
@@ -20,9 +21,9 @@ public class Boat {
     private Integer appId;
     @NotNull
     private Integer type;
-
     private Integer catainId;
-//    private Integer
+    private Integer capacity;
+
 
 
 

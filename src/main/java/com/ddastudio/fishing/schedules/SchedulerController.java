@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
+@RequestMapping("api/schedules")
 public class SchedulerController {
 
     @GetMapping
@@ -11,7 +12,7 @@ public class SchedulerController {
         return Mono.just("GET Method : schedules");
     }
 
-    @GetMapping
+    @GetMapping("{id}")
     public Mono<String> getSchedule(int id) {
         return Mono.just("GET Method : schedule "+id);
     }
