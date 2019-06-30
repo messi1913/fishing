@@ -1,4 +1,4 @@
-package com.ddastudio.fishing.common;
+package com.ddastudio.fishing.common.audit;
 
 import lombok.Data;
 
@@ -11,6 +11,6 @@ public class Audit {
 
     LocalDateTime created;
     LocalDateTime updated;
-    private String useYn;
+    String useYn;
 
 }

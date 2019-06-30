@@ -1,4 +1,4 @@
-package com.ddastudio.fishing.common;
+package com.ddastudio.fishing.common.audit;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -27,4 +27,5 @@ public class AuditListener {
         }
         audit.setUpdated(LocalDateTime.now());
     }
+
 }

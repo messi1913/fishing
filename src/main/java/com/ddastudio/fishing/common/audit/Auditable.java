@@ -1,4 +1,4 @@
-package com.ddastudio.fishing.common;
+package com.ddastudio.fishing.common.audit;
 
 public interface Auditable {
     Audit getAudit();

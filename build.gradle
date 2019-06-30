@@ -2,6 +2,7 @@ plugins {
     id 'org.asciidoctor.convert' version '1.5.3'
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'
+    id 'nu.studer.jooq' version '3.0.3'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -66,6 +67,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.5.RELEASE'
     implementation 'org.modelmapper:modelmapper:2.3.1'
+    implementation 'com.vladmihalcea:hibernate-types-5:1.2.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
@@ -76,6 +78,7 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
     testImplementation 'org.springframework.security:spring-security-test'
     asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    jooqRuntime 'mysql:mysql-connector-java'
 }
 
 test {
@@ -85,4 +88,27 @@ test {
 asciidoctor {
     inputs.dir snippetsDir
     dependsOn test
+}
+
+//JOOQ 설정
+jooq {
+    fishing(sourceSets.main) {
+        jdbc {
+            driver = 'com.mysql.jdbc.Driver'
+            url = 'jdbc:mysql://45.77.22.61:5306/fishing_reservation?serverTimezone=UTC'
+            user = 'maldini'
+            password = 'tjalswns#14rlaalsgh#16'
+            schema = 'fishing_reservation'
+        }
+        generator {
+            database {
+//                name = 'org.jooq.util.mysql.MySqlDSL'
+//                inputSchema = 'fishing_reservation'
+            }
+            target {
+                packageName = 'com.ddastudio.fishing.jooq'
+                directory = "src/main/java"
+            }
+        }
+    }
 }

@@ -1,8 +1,8 @@
 package com.ddastudio.fishing.accounts.domain;
 
-import com.ddastudio.fishing.common.Audit;
-import com.ddastudio.fishing.common.AuditListener;
-import com.ddastudio.fishing.common.Auditable;
+import com.ddastudio.fishing.common.audit.Audit;
+import com.ddastudio.fishing.common.audit.AuditListener;
+import com.ddastudio.fishing.common.audit.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +24,7 @@ public class Account implements Auditable {
     @NotNull
     @Column(unique = true)
     private String phoneNo;
+    @NotNull
     private Integer appId;
     private String name;
     private String avatar;
