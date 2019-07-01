@@ -1,11 +1,19 @@
 package com.ddastudio.fishing.ships;
 
+import com.ddastudio.fishing.jooq.tables.records.BoatMasterRecord;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("api/ships")
-public class ShipController {
+@RequestMapping("api/boats")
+@RequiredArgsConstructor
+public class BoatController {
+
+    private final BoatService service;
 
     @GetMapping
     public Mono<String> getShips() {
@@ -13,8 +21,10 @@ public class ShipController {
     }
 
     @GetMapping("{id}")
-    public Mono<String> getShip(int id) {
-        return Mono.just("GET Method : ship "+id);
+    public Mono<String> getShip(@PathVariable Integer id) throws JsonProcessingException {
+        BoatMasterDTO boatMasterDTO = service.getBoatMasterById(id);
+        Gson gson = new Gson();
+        return Mono.just(gson.toJson(boatMasterDTO));
     }
 
     @PostMapping

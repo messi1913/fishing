@@ -68,6 +68,7 @@ dependencies {
     implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.5.RELEASE'
     implementation 'org.modelmapper:modelmapper:2.3.1'
     implementation 'com.vladmihalcea:hibernate-types-5:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
@@ -102,12 +103,22 @@ jooq {
         }
         generator {
             database {
-//                name = 'org.jooq.util.mysql.MySqlDSL'
-//                inputSchema = 'fishing_reservation'
+                name = 'org.jooq.meta.mysql.MySQLDatabase'
+                inputSchema = 'fishing_reservation'
+                forcedTypes{
+                    forcedType{
+                        userType = 'com.google.gson.JsonElement'
+                        binding = 'com.ddastudio.fishing.common.converter.JsonColumnBinding'
+                        types = 'json'
+                    }
+                }
             }
             target {
                 packageName = 'com.ddastudio.fishing.jooq'
                 directory = "src/main/java"
+            }
+            generate {
+                javaTimeTypes = true
             }
         }
     }
