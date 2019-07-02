@@ -3,6 +3,7 @@ package com.ddastudio.fishing.config;
 import com.ddastudio.fishing.common.AppProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -27,8 +28,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             .anonymous()
                 .and()
             .authorizeRequests()
-//                .mvcMatchers(HttpMethod.GET, "/api/**")
-//                    .permitAll()
+                .mvcMatchers(HttpMethod.GET, "/api/**")
+                    .permitAll()
+                .mvcMatchers("/api/accounts*")
+                    .permitAll()
                 .anyRequest()
                     .authenticated()
                 .and()

@@ -1,22 +1,11 @@
 package com.ddastudio.fishing;
 
-import com.ddastudio.fishing.accounts.domain.Account;
 import com.ddastudio.fishing.accounts.domain.AccountRepository;
 import com.ddastudio.fishing.common.AppProperties;
-import com.ddastudio.fishing.common.domain.AppMaster;
-import com.ddastudio.fishing.common.domain.AppMasterRepository;
-import com.ddastudio.fishing.jooq.tables.BoatMaster;
-import com.ddastudio.fishing.jooq.tables.records.BoatMasterRecord;
-import com.ddastudio.fishing.ships.Boat;
 
-import com.ddastudio.fishing.ships.BoatMasterDAO;
-import com.ddastudio.fishing.ships.BoatMasterDTO;
-import com.ddastudio.fishing.ships.BoatMasterRepository;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import org.bouncycastle.math.raw.Mod;
+import com.ddastudio.fishing.boats.BoatMasterDAO;
+import com.ddastudio.fishing.boats.BoatMasterRepository;
+import org.jooq.DSLContext;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -26,10 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class AppRunner implements ApplicationRunner {
@@ -55,16 +40,42 @@ public class AppRunner implements ApplicationRunner {
     @Autowired
     ModelMapper modelMapper;
 
+    @Autowired
+    DSLContext dslContext;
+
     @Override
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
+//        dslContext.insertInto(CodeMaster.CODE_MASTER,
+//                                CodeMaster.CODE_MASTER.TYPE_CODE,
+//                                CodeMaster.CODE_MASTER.CODE,
+//                                CodeMaster.CODE_MASTER.CODE_NAME,
+//                                CodeMaster.CODE_MASTER.RMK,
+//                                CodeMaster.CODE_MASTER.USE_YN,
+//                                CodeMaster.CODE_MASTER.CREATED)
+//                    .values("ACCOUNT_STATUS", "NML", "Normal", "account.status", "Y", LocalDateTime.now())
+//                .execute();
+//
+//        dslContext.insertInto(CodeMaster.CODE_MASTER,
+//                CodeMaster.CODE_MASTER.TYPE_CODE,
+//                CodeMaster.CODE_MASTER.CODE,
+//                CodeMaster.CODE_MASTER.CODE_NAME,
+//                CodeMaster.CODE_MASTER.RMK,
+//                CodeMaster.CODE_MASTER.USE_YN,
+//                CodeMaster.CODE_MASTER.CREATED)
+//                .values("ACCOUNT_STATUS", "REQ", "Request", "account.status", "Y", LocalDateTime.now())
+//                .execute();
+//
+//        dslContext.insertInto(CodeMaster.CODE_MASTER,
+//                CodeMaster.CODE_MASTER.TYPE_CODE,
+//                CodeMaster.CODE_MASTER.CODE,
+//                CodeMaster.CODE_MASTER.CODE_NAME,
+//                CodeMaster.CODE_MASTER.RMK,
+//                CodeMaster.CODE_MASTER.USE_YN,
+//                CodeMaster.CODE_MASTER.CREATED)
+//                .values("ACCOUNT_STATUS", "LEA", "Leave", "account.status", "Y", LocalDateTime.now())
+//                .execute();
 
-        BoatMasterRecord boatById = dao.getBoatById(1);
-        BoatMasterDTO map = modelMapper.map(boatById, BoatMasterDTO.class);
-
-        Gson gson = new Gson();
-        String s1 = gson.toJson(map);
-        System.out.println(s1);
 
 
 

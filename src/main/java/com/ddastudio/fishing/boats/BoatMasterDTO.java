@@ -1,10 +1,10 @@
-package com.ddastudio.fishing.ships;
+package com.ddastudio.fishing.boats;
 
 
-import com.google.gson.JsonArray;
+import com.ddastudio.fishing.jooq.tables.records.BoatMasterRecord;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -35,6 +35,11 @@ public class BoatMasterDTO {
     private JsonElement fishType;
     private JsonElement images;
 
+
+    public static BoatMasterDTO of(BoatMasterRecord record) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(record, BoatMasterDTO.class);
+    }
 
 
 

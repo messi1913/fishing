@@ -1,4 +1,4 @@
-package com.ddastudio.fishing.ships;
+package com.ddastudio.fishing.boats;
 
 
 import com.ddastudio.fishing.common.audit.Audit;

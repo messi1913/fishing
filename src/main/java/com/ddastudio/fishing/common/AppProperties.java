@@ -42,4 +42,8 @@ public class AppProperties {
     @NotEmpty
     private String oauthPublicKey;
 
+    private String smsApiKey;
+    private String smsApiSecret;
+    private String senderPhoneNo;
+
 }

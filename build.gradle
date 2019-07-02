@@ -69,6 +69,7 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:2.3.1'
     implementation 'com.vladmihalcea:hibernate-types-5:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'net.nurigo:javaSDK:2.2'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
@@ -110,6 +111,7 @@ jooq {
                         userType = 'com.google.gson.JsonElement'
                         binding = 'com.ddastudio.fishing.common.converter.JsonColumnBinding'
                         types = 'json'
+
                     }
                 }
             }

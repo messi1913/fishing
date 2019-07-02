@@ -1,30 +1,19 @@
 package com.ddastudio.fishing.accounts.domain;
 
-import com.ddastudio.fishing.common.audit.Audit;
-import com.ddastudio.fishing.common.audit.AuditListener;
-import com.ddastudio.fishing.common.audit.Auditable;
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Objects;
 
-@Entity
 @Data
 @EqualsAndHashCode(of = "id")
-@EntityListeners(AuditListener.class)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account implements Auditable {
+public class AccountDTO {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @NotNull
-    @Column(unique = true)
     private String phoneNo;
-    @NotNull
     private Integer appId;
     private String name;
     private String avatar;
@@ -40,6 +29,13 @@ public class Account implements Auditable {
     private String accountStatus;
     private String smsVerifyNo;
 
-    @Embedded
-    private Audit audit;
+
+    public void confirm() {
+        this.setAccountStatus("NML");
+    }
+
+    public void validateRegister() {
+        Objects.requireNonNull(this.appId, "App Id is empty!!");
+        Objects.requireNonNull(this.phoneNo, "Phone no is empty!!");
+    }
 }
