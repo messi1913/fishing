@@ -42,8 +42,8 @@ public class AccountService implements UserDetailsService {
         return Mono.fromCallable(() -> {
             this.existsAccount(accountDTO);
             Account account = modelMapper.map(accountDTO, Account.class);
-//            String s = this.smsService.sendSMS(account.getPhoneNo());
-            account.setSmsVerifyNo("123456");
+            String sms = this.smsService.sendSMS(account.getPhoneNo());
+            account.setSmsVerifyNo(sms);
             account.setAccountStatus("REQ");
             return modelMapper.map(accountRepository.save(account), AccountDTO.class);
         })
@@ -64,8 +64,6 @@ public class AccountService implements UserDetailsService {
         })
                 .subscribeOn(Schedulers.elastic())
                 .log();
-
-
     }
 
 
