@@ -32,7 +32,7 @@ public class SMSService {
             log.info("SUCCESS TO SMS Service");
             log.info(returnJSON.toString());
             log.info(returnJSON.toJSONString());
-            return String.valueOf(returnJSON.get("success_count"));
+            return key;
         } catch (CoolsmsException e) {
             log.error(e.getMessage());
             return "ERROR";

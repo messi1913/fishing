@@ -11,18 +11,18 @@ import java.util.stream.Stream;
 
 public class AccountAdapter extends User {
 
-    private Account account;
+    private AccountDTO accountDTO;
 
-    public AccountAdapter(Account account) {
-        super(account.getPhoneNo(), account.getPw(), authorities(account.getRole()));
-        this.account = account;
+    public AccountAdapter(AccountDTO accountDTO) {
+        super(accountDTO.getPhoneNo(), accountDTO.getPw(), authorities(accountDTO.getRole()));
+        this.accountDTO = accountDTO;
     }
 
     private static Collection<? extends GrantedAuthority> authorities(String role) {
         return Set.of(new SimpleGrantedAuthority(role));
     }
 
-    public Account getAccount() {
-        return this.account;
+    public AccountDTO getAccount() {
+        return this.accountDTO;
     }
 }

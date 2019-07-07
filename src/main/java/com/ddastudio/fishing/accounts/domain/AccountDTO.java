@@ -1,6 +1,7 @@
 package com.ddastudio.fishing.accounts.domain;
 
 import lombok.*;
+import org.springframework.validation.Errors;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -30,12 +31,23 @@ public class AccountDTO {
     private String smsVerifyNo;
 
 
-    public void confirm() {
+    public void confirm(String password) {
         this.setAccountStatus("NML");
+        this.setPw(password);
     }
 
-    public void validateRegister() {
-        Objects.requireNonNull(this.appId, "App Id is empty!!");
-        Objects.requireNonNull(this.phoneNo, "Phone no is empty!!");
+    public void validateRegister(Errors errors) {
+        if (Objects.isNull(this.appId))
+           errors.reject("Empty value", "App id is empty!!");
+
+
+        if(Objects.isNull(this.phoneNo))
+            errors.reject("Empty value", "Phone number is empty!!");
+    }
+
+    public void validateSmsCode(String code, Errors errors) {
+        if(!this.smsVerifyNo.equalsIgnoreCase(code)) {
+            errors.reject("Invalid value", "인증번호가 일치하지 않습니다. !!");
+        }
     }
 }

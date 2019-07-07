@@ -17,5 +17,8 @@ public class BeanConfig {
         return modelMapper;
     }
 
-
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 }
