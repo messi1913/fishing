@@ -97,7 +97,11 @@ public class AccountControllerTest extends BaseControllerTest {
                 .build();
         Optional<AccountDTO> accountByPhoneNo = accountDAO.getAccountByPhoneNo(accountDTO);
         assertThat(accountByPhoneNo.isPresent()).isTrue();
-        accountDTO = accountByPhoneNo.get();
+        AccountDTO fromDB = accountByPhoneNo.get();
+
+        accountDTO.setId(fromDB.getId());
+        accountDTO.setSmsVerifyNo(fromDB.getSmsVerifyNo());
+        accountDTO.setPhoneNo(null);
 
         mockMvc.perform(patch("/api/accounts")
                 .accept(MediaTypes.HAL_JSON)

@@ -43,8 +43,7 @@ public class AccountService implements UserDetailsService {
     public AccountDTO registerAccount(AccountDTO accountDTO) {
         log.info("==== Register Account ====");
         Account account = modelMapper.map(accountDTO, Account.class);
-//        String sms = this.smsService.sendSMS(account.getPhoneNo());
-        String sms = "123458";
+        String sms = this.smsService.sendSMS(account.getPhoneNo());
         account.setSmsVerifyNo(sms);
         account.setAccountStatus("REQ");
         return modelMapper.map(accountRepository.save(account), AccountDTO.class);

@@ -28,7 +28,9 @@ repositories {
 
 ext {
     set('snippetsDir', file("build/generated-snippets"))
+    set('springBootAdminVersion', "2.1.5")
 }
+
 
 //REST DOCS
 test {
@@ -46,6 +48,7 @@ bootJar {
         into 'static/docs'
     }
 }
+
 
 task copyDocument(type: Copy) {
     dependsOn asciidoctor
@@ -67,6 +70,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.5.RELEASE'
+//    implementation 'de.codecentric:spring-boot-admin-starter-client'
     implementation 'org.modelmapper:modelmapper:2.3.1'
     implementation 'com.vladmihalcea:hibernate-types-5:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -84,6 +88,12 @@ dependencies {
     asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
     jooqRuntime 'mysql:mysql-connector-java'
 }
+
+//dependencyManagement {
+//    imports {
+//        mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+//    }
+//}
 
 test {
     outputs.dir snippetsDir
