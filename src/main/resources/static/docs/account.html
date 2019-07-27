@@ -657,7 +657,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="resources-account-get_http_request"><a class="link" href="#resources-account-get_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">GET /api/accounts/24 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">GET /api/accounts/28 HTTP/1.1
 Accept: application/hal+json
 Host: localhost:8080</code></pre>
 </div>
@@ -667,7 +667,7 @@ Host: localhost:8080</code></pre>
 <h4 id="resources-account-get_curl_request"><a class="link" href="#resources-account-get_curl_request">Example request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/api/accounts/24' -i -X GET \
+<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/api/accounts/28' -i -X GET \
     -H 'Accept: application/hal+json'</code></pre>
 </div>
 </div>
@@ -682,12 +682,12 @@ X-XSS-Protection: 1; mode=block
 Expires: 0
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
+Content-Length: 736
 Content-Type: application/hal+json;charset=UTF-8
-Content-Length: 665
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 
 {
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : "01099891913",
   "appId" : 1,
   "name" : null,
@@ -698,11 +698,14 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
   "providerUid" : null,
   "cancelDate" : null,
   "email" : null,
-  "pw" : "{bcrypt}$2a$10$CP1xjeqKZKB79pysijcxVuhChjuwnDf7CY3fJSZjOurY.oOFNSLJq",
+  "pw" : "{bcrypt}$2a$10$MvsJ/iF9JK54rBbdEadgx.UiplYE4hR98vUy5dI.miSzWdtss4CKO",
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : "NML",
-  "smsVerifyNo" : "123458",
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null,
   "_links" : {
     "self" : {
       "href" : "http://localhost:8080/api/accounts"
@@ -851,7 +854,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">POST /api/accounts HTTP/1.1
-Content-Length: 336
+Content-Length: 407
 Content-Type: application/json;charset=UTF-8
 Accept: application/hal+json
 Host: localhost:8080
@@ -872,7 +875,10 @@ Host: localhost:8080
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : null,
-  "smsVerifyNo" : null
+  "smsVerifyNo" : null,
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null
 }</code></pre>
 </div>
 </div>
@@ -925,7 +931,10 @@ Host: localhost:8080
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : null,
-  "smsVerifyNo" : null
+  "smsVerifyNo" : null,
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null
 }'</code></pre>
 </div>
 </div>
@@ -937,15 +946,15 @@ Host: localhost:8080
 <pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Pragma: no-cache
 X-XSS-Protection: 1; mode=block
-Content-Length: 603
 Expires: 0
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 Content-Type: application/hal+json;charset=UTF-8
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Content-Length: 674
 
 {
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : "01099891913",
   "appId" : 1,
   "name" : null,
@@ -960,7 +969,10 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : "REQ",
-  "smsVerifyNo" : "123458",
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null,
   "_links" : {
     "self" : {
       "href" : "http://localhost:8080/api/accounts"
@@ -1130,13 +1142,13 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">PATCH /api/accounts HTTP/1.1
-Content-Length: 329
 Content-Type: application/json;charset=UTF-8
 Accept: application/hal+json
 Host: localhost:8080
+Content-Length: 400
 
 {
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : null,
   "appId" : 1,
   "name" : null,
@@ -1151,7 +1163,10 @@ Host: localhost:8080
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : null,
-  "smsVerifyNo" : "123458"
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null
 }</code></pre>
 </div>
 </div>
@@ -1189,7 +1204,7 @@ Host: localhost:8080
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/hal+json' \
     -d '{
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : null,
   "appId" : 1,
   "name" : null,
@@ -1204,7 +1219,10 @@ Host: localhost:8080
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : null,
-  "smsVerifyNo" : "123458"
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null
 }'</code></pre>
 </div>
 </div>
@@ -1218,13 +1236,13 @@ Pragma: no-cache
 X-XSS-Protection: 1; mode=block
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 669
 X-Content-Type-Options: nosniff
 Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 1994
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 
 {
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : "01099891913",
   "appId" : 1,
   "name" : null,
@@ -1235,11 +1253,14 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
   "providerUid" : null,
   "cancelDate" : null,
   "email" : null,
-  "pw" : "{bcrypt}$2a$10$CP1xjeqKZKB79pysijcxVuhChjuwnDf7CY3fJSZjOurY.oOFNSLJq",
+  "pw" : "{bcrypt}$2a$10$MvsJ/iF9JK54rBbdEadgx.UiplYE4hR98vUy5dI.miSzWdtss4CKO",
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : "NML",
-  "smsVerifyNo" : "123458",
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjY4MjU2MjEsInVzZXJfbmFtZSI6IjAxMDk5ODkxOTEzIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjkxMzUwYzIyLTZmZjctNDMyZS1hZWUzLWQ5NzI0YmY4ZWUwNCIsImNsaWVudF9pZCI6ImZpc2hpbmciLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.FXW43wuj9WFvfKRBBY8k6s4E21BDOVmOI4b2fCK-HH7bJqtiuLqrVQXBUE-MQhbTFcQcE_EUW2g9KWqJ7e3ahEz9MASgd8AHrkNP3_LyqoPh1aiofkQ5qSMD61hJ0Ya3MthRIzjepctEZZ6yq_jKmr7HNm2YTDXtWxXvd9mFnw3mY24aQdhSPnOhIesuacuF_fAWilu_1_NHOZ8mzvicSXGGevHZq-Nw2p5N1aCt7A52Z-GSkDxgw9az31jlgGt978HULtD6LL7VWPSkN9XIWkVNShC44v1_a4V6wE29hbnmTHP3AaOXVRSOMLvTRmDphCaN5igdE0PnnXAI3Fivug",
+  "refreshToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiIwMTA5OTg5MTkxMyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI5MTM1MGMyMi02ZmY3LTQzMmUtYWVlMy1kOTcyNGJmOGVlMDQiLCJleHAiOjE1Njk0MTc2MjEsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiI0YTI1ZjI1NS1lZjY5LTRlNzAtOTNjMy1iMmE0YmY2NDBmOGYiLCJjbGllbnRfaWQiOiJmaXNoaW5nIn0.KH9WJNZVcv2zCcN35HNATm-mDzJ6vKhcFfMfyGcF8aDgSXsHHDqcIDkRMiWGSPnMadmvJJ3mBdW9cLE7rzqygYA3926o2hsGelE7J_i1iQv1a5vx8QzV05h853-elnn_artlbYXIT5xUAF1lFBTQZUh6fF4JfpV1bAwI7O-8RGaQlPFmuZthNlAEFGyf0MNkTZy_xe3GFVyoP4k1Pzd7Jk7HAQy9p-sd38vWp8tP5mwF_OezxOfmjjCxEFkMzTrcAxgd_O1VDRxMGelsTl8ORdQnTDSuT3cvb38J81EYE9NRPfXlrIZLfPV0UYAU6t1Yv8gI3nndK5AqicYZjKf0kA",
   "_links" : {
     "self" : {
       "href" : "http://localhost:8080/api/accounts"
@@ -1316,6 +1337,16 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>smsVerifyNo</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>class java.lang.String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verification Code for registration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessToken</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>class java.lang.String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Access Token of user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>refreshToken</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>class java.lang.String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refresh Token of user</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>_links.self.href</code></p></td>
@@ -1419,13 +1450,13 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">PUT /api/accounts HTTP/1.1
+Content-Length: 548
 Content-Type: application/json;charset=UTF-8
 Accept: application/hal+json
 Host: localhost:8080
-Content-Length: 477
 
 {
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : "01099891913",
   "appId" : 1,
   "name" : "김상민",
@@ -1436,11 +1467,14 @@ Content-Length: 477
   "providerUid" : null,
   "cancelDate" : null,
   "email" : null,
-  "pw" : "{bcrypt}$2a$10$CP1xjeqKZKB79pysijcxVuhChjuwnDf7CY3fJSZjOurY.oOFNSLJq",
+  "pw" : "{bcrypt}$2a$10$MvsJ/iF9JK54rBbdEadgx.UiplYE4hR98vUy5dI.miSzWdtss4CKO",
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : "NML",
-  "smsVerifyNo" : "123458"
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null
 }</code></pre>
 </div>
 </div>
@@ -1478,7 +1512,7 @@ Content-Length: 477
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/hal+json' \
     -d '{
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : "01099891913",
   "appId" : 1,
   "name" : "김상민",
@@ -1489,11 +1523,14 @@ Content-Length: 477
   "providerUid" : null,
   "cancelDate" : null,
   "email" : null,
-  "pw" : "{bcrypt}$2a$10$CP1xjeqKZKB79pysijcxVuhChjuwnDf7CY3fJSZjOurY.oOFNSLJq",
+  "pw" : "{bcrypt}$2a$10$MvsJ/iF9JK54rBbdEadgx.UiplYE4hR98vUy5dI.miSzWdtss4CKO",
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : "NML",
-  "smsVerifyNo" : "123458"
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null
 }'</code></pre>
 </div>
 </div>
@@ -1505,15 +1542,15 @@ Content-Length: 477
 <pre class="highlightjs highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Pragma: no-cache
 X-XSS-Protection: 1; mode=block
+Content-Length: 808
 Expires: 0
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 Content-Type: application/hal+json;charset=UTF-8
-Content-Length: 737
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 
 {
-  "id" : 24,
+  "id" : 28,
   "phoneNo" : "01099891913",
   "appId" : 1,
   "name" : "김상민",
@@ -1524,11 +1561,14 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
   "providerUid" : null,
   "cancelDate" : null,
   "email" : null,
-  "pw" : "{bcrypt}$2a$10$CP1xjeqKZKB79pysijcxVuhChjuwnDf7CY3fJSZjOurY.oOFNSLJq",
+  "pw" : "{bcrypt}$2a$10$MvsJ/iF9JK54rBbdEadgx.UiplYE4hR98vUy5dI.miSzWdtss4CKO",
   "refresh_token" : null,
   "emailCheck" : null,
   "accountStatus" : "NML",
-  "smsVerifyNo" : "123458",
+  "smsVerifyNo" : "583055",
+  "authToken" : null,
+  "accessToken" : null,
+  "refreshToken" : null,
   "_links" : {
     "self" : {
       "href" : "http://localhost:8080/api/accounts"

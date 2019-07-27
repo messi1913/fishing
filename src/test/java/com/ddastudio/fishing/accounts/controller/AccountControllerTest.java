@@ -33,7 +33,7 @@ public class AccountControllerTest extends BaseControllerTest {
     AccountDAO accountDAO;
 
     @Test
-    @MethodDescription("사용자를 생성한다.")
+    @MethodDescription("회원가입을 한다.")
     public void registerAccount() throws Exception {
         AccountDTO accountDTO = AccountDTO.builder()
                 .appId(1)
@@ -141,6 +141,8 @@ public class AccountControllerTest extends BaseControllerTest {
                                 fieldWithPath("phoneNo").type(String.class).description("Mobile number of user"),
                                 fieldWithPath("accountStatus").type(String.class).description("Status of user"),
                                 fieldWithPath("smsVerifyNo").type(String.class).description("Verification Code for registration"),
+                                fieldWithPath("accessToken").type(String.class).description("Access Token of user"),
+                                fieldWithPath("refreshToken").type(String.class).description("Refresh Token of user "),
                                 fieldWithPath("_links.self.href").description("Link to self"),
                                 fieldWithPath("_links.update-account.href").description("Link to update user"),
                                 fieldWithPath("_links.profile.href").description("Link to profile")

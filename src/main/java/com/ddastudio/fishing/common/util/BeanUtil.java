@@ -1,20 +1,39 @@
 package com.ddastudio.fishing.common.util;
 
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
 
-import java.util.Objects;
+@Component
+@RequiredArgsConstructor
+public class BeanUtil implements ApplicationContextAware {
 
-public class BeanUtil {
+    private static ApplicationContext applicationContext;
+    private final ApplicationContext context;
+
+    @PostConstruct
+    private void initApplicationContext() {
+        applicationContext = this.context;
+    }
 
     /**
      * 빈을 직접 얻습니다.
      *
-     * @param t : 빈클래스 객체
-     * @return Objejct
+     * @param clazz : 빈클래스 객체
+     * @return T
      */
-    public static <T> Class<T> getBean(T t) {
-        WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
-        return (Class<T>) Objects.requireNonNull(context).getBean(t.getClass().getSimpleName());
+    public static <T> T getBean(final Class<T> clazz) {
+        return applicationContext.getBean(clazz);
+
+    }
+
+    public static ApplicationContext getApplicationContext() {
+        return BeanUtil.applicationContext;
+    }
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        BeanUtil.applicationContext = applicationContext;
     }
 }

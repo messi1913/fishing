@@ -56,7 +56,7 @@ public class AccountController {
 
     @PutMapping
     public ResponseEntity updateAccount(@RequestBody AccountDTO accountDTO, Errors errors) {
-        log.info("===== Controller : Confirm sms of account =====");
+        log.info("===== Controller : Modify account =====");
         AccountDTO updateAccount = this.service.updateAccount(accountDTO, errors);
         if(errors.hasErrors())
             return CommonUtil.badRequest(errors);
@@ -70,7 +70,7 @@ public class AccountController {
 
     @GetMapping("/{id}")
     public ResponseEntity getUser(@PathVariable Integer id) {
-        Optional<AccountDTO> accountDTOOptional = this.service.retrievAccount(id);
+        Optional<AccountDTO> accountDTOOptional = this.service.retrieveAccount(id);
         if(accountDTOOptional.isEmpty())
             return ResponseEntity.badRequest().body("This id ["+id+"] of Account does not exist!! ");
 

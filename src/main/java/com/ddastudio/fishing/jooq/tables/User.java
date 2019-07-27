@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class User extends TableImpl<UserRecord> {
 
-    private static final long serialVersionUID = -500684366;
+    private static final long serialVersionUID = -1794569748;
 
     /**
      * The reference instance of <code>fishing_reservation.user</code>
@@ -126,6 +126,11 @@ public class User extends TableImpl<UserRecord> {
      * The column <code>fishing_reservation.user.email_check</code>.
      */
     public final TableField<UserRecord, LocalDateTime> EMAIL_CHECK = createField("email_check", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
+     * The column <code>fishing_reservation.user.push_token</code>.
+     */
+    public final TableField<UserRecord, String> PUSH_TOKEN = createField("push_token", org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>fishing_reservation.user.updated</code>.

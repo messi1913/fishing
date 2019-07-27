@@ -4,10 +4,12 @@
 package com.ddastudio.fishing.jooq.tables;
 
 
+import com.ddastudio.fishing.common.converter.JsonColumnBinding;
 import com.ddastudio.fishing.jooq.FishingReservation;
 import com.ddastudio.fishing.jooq.Indexes;
 import com.ddastudio.fishing.jooq.Keys;
 import com.ddastudio.fishing.jooq.tables.records.ReservationHistoryRecord;
+import com.google.gson.JsonElement;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -41,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ReservationHistory extends TableImpl<ReservationHistoryRecord> {
 
-    private static final long serialVersionUID = -1139792071;
+    private static final long serialVersionUID = -48696173;
 
     /**
      * The reference instance of <code>fishing_reservation.reservation_history</code>
@@ -117,6 +119,11 @@ public class ReservationHistory extends TableImpl<ReservationHistoryRecord> {
     public final TableField<ReservationHistoryRecord, String> DEPOSITOR = createField("depositor", org.jooq.impl.SQLDataType.VARCHAR(100), this, "");
 
     /**
+     * The column <code>fishing_reservation.reservation_history.deposit_deadline</code>.
+     */
+    public final TableField<ReservationHistoryRecord, LocalDateTime> DEPOSIT_DEADLINE = createField("deposit_deadline", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
      * The column <code>fishing_reservation.reservation_history.request_remarks</code>.
      */
     public final TableField<ReservationHistoryRecord, String> REQUEST_REMARKS = createField("request_remarks", org.jooq.impl.SQLDataType.VARCHAR(200), this, "");
@@ -145,6 +152,11 @@ public class ReservationHistory extends TableImpl<ReservationHistoryRecord> {
      * The column <code>fishing_reservation.reservation_history.cancel_date</code>.
      */
     public final TableField<ReservationHistoryRecord, LocalDateTime> CANCEL_DATE = createField("cancel_date", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
+     * The column <code>fishing_reservation.reservation_history.push_type</code>.
+     */
+    public final TableField<ReservationHistoryRecord, JsonElement> PUSH_TYPE = createField("push_type", org.jooq.impl.DefaultDataType.getDefaultDataType("\"fishing_reservation\".\"reservation_history_push_type\""), this, "", new JsonColumnBinding());
 
     /**
      * The column <code>fishing_reservation.reservation_history.work_id</code>.

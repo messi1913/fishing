@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MyNews extends TableImpl<MyNewsRecord> {
 
-    private static final long serialVersionUID = 1989748049;
+    private static final long serialVersionUID = -1827059914;
 
     /**
      * The reference instance of <code>fishing_reservation.my_news</code>
@@ -73,6 +73,11 @@ public class MyNews extends TableImpl<MyNewsRecord> {
     public final TableField<MyNewsRecord, Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
+     * The column <code>fishing_reservation.my_news.type</code>. code_master(NEWS_TYPE)
+     */
+    public final TableField<MyNewsRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.VARCHAR(2).defaultValue(org.jooq.impl.DSL.inline("AP", org.jooq.impl.SQLDataType.VARCHAR)), this, "code_master(NEWS_TYPE)");
+
+    /**
      * The column <code>fishing_reservation.my_news.message</code>.
      */
     public final TableField<MyNewsRecord, String> MESSAGE = createField("message", org.jooq.impl.SQLDataType.VARCHAR(300).nullable(false), this, "");
@@ -86,6 +91,11 @@ public class MyNews extends TableImpl<MyNewsRecord> {
      * The column <code>fishing_reservation.my_news.confirm_date</code>.
      */
     public final TableField<MyNewsRecord, LocalDateTime> CONFIRM_DATE = createField("confirm_date", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
+     * The column <code>fishing_reservation.my_news.push_send_date</code>.
+     */
+    public final TableField<MyNewsRecord, LocalDateTime> PUSH_SEND_DATE = createField("push_send_date", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
 
     /**
      * The column <code>fishing_reservation.my_news.use_yn</code>.

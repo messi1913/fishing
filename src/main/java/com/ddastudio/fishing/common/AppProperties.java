@@ -1,7 +1,6 @@
 package com.ddastudio.fishing.common;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Component
 @ConfigurationProperties(prefix = "fishing")
-@Getter
-@Setter
+@Data
 public class AppProperties {
     @NotEmpty
     private String adminUsername;
@@ -46,4 +44,9 @@ public class AppProperties {
     private String smsApiSecret;
     private String senderPhoneNo;
 
+    private String bankClientId;
+    private String bankClientSecret;
+    private String bankAccessToken;
+
 }
+

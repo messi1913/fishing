@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Account extends TableImpl<AccountRecord> {
 
-    private static final long serialVersionUID = -1067415926;
+    private static final long serialVersionUID = 285753042;
 
     /**
      * The reference instance of <code>fishing_reservation.account</code>
@@ -152,6 +152,11 @@ public class Account extends TableImpl<AccountRecord> {
      * The column <code>fishing_reservation.account.sms_verify_no</code>.
      */
     public final TableField<AccountRecord, String> SMS_VERIFY_NO = createField("sms_verify_no", org.jooq.impl.SQLDataType.VARCHAR(6), this, "");
+
+    /**
+     * The column <code>fishing_reservation.account.auth_token</code>.
+     */
+    public final TableField<AccountRecord, String> AUTH_TOKEN = createField("auth_token", org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * Create a <code>fishing_reservation.account</code> table reference

@@ -4,10 +4,12 @@
 package com.ddastudio.fishing.jooq.tables;
 
 
+import com.ddastudio.fishing.common.converter.JsonColumnBinding;
 import com.ddastudio.fishing.jooq.FishingReservation;
 import com.ddastudio.fishing.jooq.Indexes;
 import com.ddastudio.fishing.jooq.Keys;
 import com.ddastudio.fishing.jooq.tables.records.ReservationRecord;
+import com.google.gson.JsonElement;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -42,7 +44,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Reservation extends TableImpl<ReservationRecord> {
 
-    private static final long serialVersionUID = 437524296;
+    private static final long serialVersionUID = -455678259;
 
     /**
      * The reference instance of <code>fishing_reservation.reservation</code>
@@ -110,6 +112,11 @@ public class Reservation extends TableImpl<ReservationRecord> {
     public final TableField<ReservationRecord, String> DEPOSITOR = createField("depositor", org.jooq.impl.SQLDataType.VARCHAR(100), this, "");
 
     /**
+     * The column <code>fishing_reservation.reservation.deposit_deadline</code>.
+     */
+    public final TableField<ReservationRecord, LocalDateTime> DEPOSIT_DEADLINE = createField("deposit_deadline", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
      * The column <code>fishing_reservation.reservation.request_remarks</code>.
      */
     public final TableField<ReservationRecord, String> REQUEST_REMARKS = createField("request_remarks", org.jooq.impl.SQLDataType.VARCHAR(200), this, "");
@@ -138,6 +145,11 @@ public class Reservation extends TableImpl<ReservationRecord> {
      * The column <code>fishing_reservation.reservation.cancel_date</code>.
      */
     public final TableField<ReservationRecord, LocalDateTime> CANCEL_DATE = createField("cancel_date", org.jooq.impl.SQLDataType.LOCALDATETIME, this, "");
+
+    /**
+     * The column <code>fishing_reservation.reservation.push_type</code>.
+     */
+    public final TableField<ReservationRecord, JsonElement> PUSH_TYPE = createField("push_type", org.jooq.impl.DefaultDataType.getDefaultDataType("\"fishing_reservation\".\"reservation_push_type\""), this, "", new JsonColumnBinding());
 
     /**
      * The column <code>fishing_reservation.reservation.updated</code>.

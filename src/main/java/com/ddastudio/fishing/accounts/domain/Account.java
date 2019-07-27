@@ -39,6 +39,7 @@ public class Account implements Auditable {
     private String emailCheck;
     private String accountStatus;
     private String smsVerifyNo;
+    private String authToken;
 
     @Embedded
     private Audit audit;

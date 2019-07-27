@@ -1,8 +1,8 @@
 package com.ddastudio.fishing.accounts.service;
 
 import com.ddastudio.fishing.accounts.domain.*;
+import com.ddastudio.fishing.common.util.CommonUtil;
 import com.ddastudio.fishing.common.util.SMSService;
-import com.ddastudio.fishing.jooq.tables.records.AccountRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -13,9 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
-import static com.ddastudio.fishing.common.Constants.USE;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +61,7 @@ public class AccountService implements UserDetailsService {
         String password = passwordEncoder.encode(accountDTO.getSmsVerifyNo());
         dtoFromDB.confirm(password);
         this.accountDAO.saveAccountStatus(dtoFromDB);
+        this.getOauthTokens(dtoFromDB, errors);
         return dtoFromDB;
     }
 
@@ -76,7 +78,26 @@ public class AccountService implements UserDetailsService {
         return modelMapper.map(accountRepository.save(account), AccountDTO.class);
     }
 
-    public Optional<AccountDTO> retrievAccount(Integer id) {
+    public Optional<AccountDTO> retrieveAccount(Integer id) {
         return accountDAO.getAccountById(id);
+    }
+
+
+    private void getOauthTokens(AccountDTO accountDTO, Errors errors) {
+        Map<String, String> oauthToken = CommonUtil.requestOauth(accountDTO.getPhoneNo(), accountDTO.getSmsVerifyNo());
+        String accessToken = oauthToken.get("access_token");
+        if(Objects.isNull(accessToken)) {
+            errors.rejectValue("Token Error", "Can not get access_token");
+            return;
+        }
+
+        String refreshToken = oauthToken.get("refresh_token");
+        if(Objects.isNull(refreshToken)) {
+            errors.rejectValue("Token Error", "Can not get refresh_token");
+            return;
+        }
+
+        accountDTO.setAccessToken(accessToken);
+        accountDTO.setRefreshToken(refreshToken);
     }
 }
