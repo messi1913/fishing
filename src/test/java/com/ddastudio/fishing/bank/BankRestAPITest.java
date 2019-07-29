@@ -21,7 +21,7 @@
 //
 //    @Test
 //    public void getAuth() {
-//       CommonUtil.requestOauth("01099891913", "123458");
+//        System.out.println(CommonUtil.getProperty("sms.test.use", "N"));
 //
 //    }
 //}

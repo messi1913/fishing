@@ -26,6 +26,7 @@ public class AuditListener {
             auditable.setAudit(audit);
         }
         audit.setUpdated(LocalDateTime.now());
+        audit.setUseYn("Y");
     }
 
 }

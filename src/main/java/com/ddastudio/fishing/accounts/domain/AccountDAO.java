@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,12 +45,11 @@ public class AccountDAO {
         return query.update(ACCOUNT)
                 .set(ACCOUNT.ACCOUNT_STATUS, accountDTO.getAccountStatus())
                 .set(ACCOUNT.PW, accountDTO.getPw())
+                .set(ACCOUNT.UPDATED, LocalDateTime.now())
                 .where(ACCOUNT.ID.equal(accountDTO.getId()))
                     .and(ACCOUNT.USE_YN.equal(USE))
              .execute();
     }
-
-
 
     public boolean confirmMobileCertificationNo(String phoneNo, String key) {
         return query.fetchExists(query.select()

@@ -1,6 +1,7 @@
 package com.ddastudio.fishing.common.util;
 
 import com.ddastudio.fishing.common.AppProperties;
+import com.ddastudio.fishing.common.domain.EnvDAO;
 import com.ddastudio.fishing.common.domain.ErrorResource;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.hateoas.Link;
@@ -50,5 +51,9 @@ public class CommonUtil {
 
         ResponseEntity<Map> responseEntity = restTemplate.exchange("https://127.0.0.1:8081/oauth/token", HttpMethod.POST, new HttpEntity<>(parameters, headers), Map.class);
         return responseEntity.getBody();
+    }
+
+    public static String getProperty(String key, String defaultValue) {
+        return BeanUtil.getBean(EnvDAO.class).getProperty(key).orElse(defaultValue);
     }
 }

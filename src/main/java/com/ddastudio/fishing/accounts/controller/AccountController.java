@@ -25,14 +25,15 @@ public class AccountController {
     private final AccountService service;
 
     @PostMapping
-    public ResponseEntity registerAccount(@RequestBody AccountDTO accountDTO, Errors errors) {
+    public ResponseEntity requestSmsService(@RequestBody AccountDTO accountDTO, Errors errors) {
         log.info("===== Controller : register account =====");
         accountDTO.validateRegister(errors);
-        this.service.existsAccount(accountDTO, errors);
+        // 이미 가입한 후 SMS 호출 하거나 인증번호 잘 못 기입했을경우
+        //this.service.existsAccount(accountDTO, errors);
         if(errors.hasErrors())
             return CommonUtil.badRequest(errors);
 
-        var resource = new AccountResource(this.service.registerAccount(accountDTO));
+        var resource = new AccountResource(this.service.requestSmsService(accountDTO));
         resource.add(linkTo(AccountController.class).withSelfRel());
         resource.add(new Link("/docs/account.html#resources-account-create").withRel("profile"));
         resource.add(linkTo(AccountController.class).withRel("confirm-account"));

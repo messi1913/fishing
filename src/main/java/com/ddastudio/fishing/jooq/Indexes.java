@@ -10,6 +10,7 @@ import com.ddastudio.fishing.jooq.tables.BoatMaster;
 import com.ddastudio.fishing.jooq.tables.CodeMaster;
 import com.ddastudio.fishing.jooq.tables.CommunityContent;
 import com.ddastudio.fishing.jooq.tables.FishMaster;
+import com.ddastudio.fishing.jooq.tables.FishingEnvironment;
 import com.ddastudio.fishing.jooq.tables.MyNews;
 import com.ddastudio.fishing.jooq.tables.OauthClientDetails;
 import com.ddastudio.fishing.jooq.tables.Reservation;
@@ -51,6 +52,7 @@ public class Indexes {
     public static final Index CODE_MASTER_CODE_MASTER_PK = Indexes0.CODE_MASTER_CODE_MASTER_PK;
     public static final Index COMMUNITY_CONTENT_PRIMARY = Indexes0.COMMUNITY_CONTENT_PRIMARY;
     public static final Index FISH_MASTER_FISH_MASTER_ID_UINDEX = Indexes0.FISH_MASTER_FISH_MASTER_ID_UINDEX;
+    public static final Index FISHING_ENVIRONMENT_PRIMARY = Indexes0.FISHING_ENVIRONMENT_PRIMARY;
     public static final Index MY_NEWS_PRIMARY = Indexes0.MY_NEWS_PRIMARY;
     public static final Index OAUTH_CLIENT_DETAILS_PRIMARY = Indexes0.OAUTH_CLIENT_DETAILS_PRIMARY;
     public static final Index RESERVATION_PRIMARY = Indexes0.RESERVATION_PRIMARY;
@@ -74,6 +76,7 @@ public class Indexes {
         public static Index CODE_MASTER_CODE_MASTER_PK = Internal.createIndex("code_master_pk", CodeMaster.CODE_MASTER, new OrderField[] { CodeMaster.CODE_MASTER.TYPE_CODE, CodeMaster.CODE_MASTER.CODE }, true);
         public static Index COMMUNITY_CONTENT_PRIMARY = Internal.createIndex("PRIMARY", CommunityContent.COMMUNITY_CONTENT, new OrderField[] { CommunityContent.COMMUNITY_CONTENT.ID }, true);
         public static Index FISH_MASTER_FISH_MASTER_ID_UINDEX = Internal.createIndex("fish_master_id_uindex", FishMaster.FISH_MASTER, new OrderField[] { FishMaster.FISH_MASTER.ID }, true);
+        public static Index FISHING_ENVIRONMENT_PRIMARY = Internal.createIndex("PRIMARY", FishingEnvironment.FISHING_ENVIRONMENT, new OrderField[] { FishingEnvironment.FISHING_ENVIRONMENT.ID }, true);
         public static Index MY_NEWS_PRIMARY = Internal.createIndex("PRIMARY", MyNews.MY_NEWS, new OrderField[] { MyNews.MY_NEWS.ID }, true);
         public static Index OAUTH_CLIENT_DETAILS_PRIMARY = Internal.createIndex("PRIMARY", OauthClientDetails.OAUTH_CLIENT_DETAILS, new OrderField[] { OauthClientDetails.OAUTH_CLIENT_DETAILS.CLIENT_ID }, true);
         public static Index RESERVATION_PRIMARY = Internal.createIndex("PRIMARY", Reservation.RESERVATION, new OrderField[] { Reservation.RESERVATION.ID }, true);

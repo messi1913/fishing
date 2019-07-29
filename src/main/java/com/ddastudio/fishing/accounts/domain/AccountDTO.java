@@ -25,7 +25,6 @@ public class AccountDTO {
     private LocalDate cancelDate;
     private String email;
     private String pw;
-    private String refresh_token;
     private String emailCheck;
     private String accountStatus;
     private String smsVerifyNo;

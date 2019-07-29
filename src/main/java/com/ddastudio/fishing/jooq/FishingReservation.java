@@ -12,6 +12,7 @@ import com.ddastudio.fishing.jooq.tables.CodeMaster;
 import com.ddastudio.fishing.jooq.tables.CommunityComment;
 import com.ddastudio.fishing.jooq.tables.CommunityContent;
 import com.ddastudio.fishing.jooq.tables.FishMaster;
+import com.ddastudio.fishing.jooq.tables.FishingEnvironment;
 import com.ddastudio.fishing.jooq.tables.MyNews;
 import com.ddastudio.fishing.jooq.tables.OauthClientDetails;
 import com.ddastudio.fishing.jooq.tables.Reservation;
@@ -46,7 +47,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class FishingReservation extends SchemaImpl {
 
-    private static final long serialVersionUID = 1291635848;
+    private static final long serialVersionUID = -637791104;
 
     /**
      * The reference instance of <code>fishing_reservation</code>
@@ -104,6 +105,11 @@ public class FishingReservation extends SchemaImpl {
  - 현재 사용 안함
      */
     public final FishMaster FISH_MASTER = com.ddastudio.fishing.jooq.tables.FishMaster.FISH_MASTER;
+
+    /**
+     * The table <code>fishing_reservation.fishing_environment</code>.
+     */
+    public final FishingEnvironment FISHING_ENVIRONMENT = com.ddastudio.fishing.jooq.tables.FishingEnvironment.FISHING_ENVIRONMENT;
 
     /**
      * The table <code>fishing_reservation.my_news</code>.
@@ -187,6 +193,7 @@ public class FishingReservation extends SchemaImpl {
             CommunityComment.COMMUNITY_COMMENT,
             CommunityContent.COMMUNITY_CONTENT,
             FishMaster.FISH_MASTER,
+            FishingEnvironment.FISHING_ENVIRONMENT,
             MyNews.MY_NEWS,
             OauthClientDetails.OAUTH_CLIENT_DETAILS,
             Reservation.RESERVATION,

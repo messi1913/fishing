@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.ddastudio.fishing.common.Constants.USE;
+
 
 @Service
 @RequiredArgsConstructor
@@ -41,10 +43,18 @@ public class AccountService implements UserDetailsService {
             errors.reject("Exist User", "해당 사용자 ["+accountDTO.getPhoneNo()+"] 는 이미 등록된 사용자 입니다.");
     }
 
-    public AccountDTO registerAccount(AccountDTO accountDTO) {
+    public AccountDTO requestSmsService(AccountDTO accountDTO) {
         log.info("==== Register Account ====");
-        Account account = modelMapper.map(accountDTO, Account.class);
-        String sms = this.smsService.sendSMS(account.getPhoneNo());
+//        accountDTO = accountDAO.getAccountByPhoneNo(accountDTO.getPhoneNo()).orElse(accountDTO);
+//        Account account = modelMapper.map(accountDTO, Account.class);
+        Account account = this.accountRepository.findByPhoneNoAndAuditUseYn(accountDTO.getPhoneNo(), USE)
+                .orElseGet(() -> modelMapper.map(accountDTO, Account.class));
+        String sms;
+        if(CommonUtil.getProperty("sms.test.use", "N").equals("Y")) {
+            sms = "123456";
+        } else {
+            sms = this.smsService.sendSMS(account.getPhoneNo());
+        }
         account.setSmsVerifyNo(sms);
         account.setAccountStatus("REQ");
         return modelMapper.map(accountRepository.save(account), AccountDTO.class);

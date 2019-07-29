@@ -32,7 +32,7 @@
 //                .param("password", appProperties.getUserPassword())
 //                .param("grant_type", "password"))
 //                .andDo(print());
-//
+
 //        var responseBody = perform.andReturn().getResponse().getContentAsString();
 //        Jackson2JsonParser parser = new Jackson2JsonParser();
 //        String access_token = parser.parseMap(responseBody).get("access_token").toString();

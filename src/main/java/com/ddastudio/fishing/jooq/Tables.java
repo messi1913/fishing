@@ -12,6 +12,7 @@ import com.ddastudio.fishing.jooq.tables.CodeMaster;
 import com.ddastudio.fishing.jooq.tables.CommunityComment;
 import com.ddastudio.fishing.jooq.tables.CommunityContent;
 import com.ddastudio.fishing.jooq.tables.FishMaster;
+import com.ddastudio.fishing.jooq.tables.FishingEnvironment;
 import com.ddastudio.fishing.jooq.tables.MyNews;
 import com.ddastudio.fishing.jooq.tables.OauthClientDetails;
 import com.ddastudio.fishing.jooq.tables.Reservation;
@@ -89,6 +90,11 @@ public class Tables {
  - 현재 사용 안함
      */
     public static final FishMaster FISH_MASTER = com.ddastudio.fishing.jooq.tables.FishMaster.FISH_MASTER;
+
+    /**
+     * The table <code>fishing_reservation.fishing_environment</code>.
+     */
+    public static final FishingEnvironment FISHING_ENVIRONMENT = com.ddastudio.fishing.jooq.tables.FishingEnvironment.FISHING_ENVIRONMENT;
 
     /**
      * The table <code>fishing_reservation.my_news</code>.

@@ -17,12 +17,12 @@ public class SMSService {
 
     private final AppProperties properties;
 
-    public String sendSMS(String phoenNo) {
+    public String sendSMS(String phoneNo) {
         Message smsService = new Message(properties.getSmsApiKey(), properties.getSmsApiSecret());
         String key = SMSKey.getKey(6);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("to", phoenNo);
+        map.put("to", phoneNo);
         map.put("from", "01099891913");
         map.put("text", "[DDA Studio] 낚시왕 인증번호 [" + key + "] 를 입력해 주세요.");
         map.put("type", "sms");

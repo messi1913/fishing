@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'
     id 'nu.studer.jooq' version '3.0.3'
+    id 'com.bmuschko.docker-spring-boot-application' version '4.10.0'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -47,6 +48,7 @@ bootJar {
     from ("${asciidoctor.outputDir}/html5") {
         into 'static/docs'
     }
+
 }
 
 
