@@ -84,7 +84,19 @@ public class AccountController {
     }
 
 
+    @PostMapping("/token")
+    public ResponseEntity refreshToken(@RequestBody AccountDTO accountDTO, Errors errors) {
+        log.info("===== Controller : refresh token for account =====");
+        AccountDTO refreshAccountDTO = this.service.refreshOauthToken(accountDTO, errors);
+        if(errors.hasErrors())
+            return CommonUtil.badRequest(errors);
 
+        var resource = new AccountResource(refreshAccountDTO);
+        resource.add(linkTo(AccountController.class).withSelfRel());
+        resource.add(new Link("/docs/account.html#resources-account-refreshToken").withRel("profile"));
+        resource.add(linkTo(AccountController.class).withRel("get-account"));
+        return ResponseEntity.ok(resource);
+    }
 
 
 

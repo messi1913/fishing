@@ -28,9 +28,10 @@ public class AccountDTO {
     private String emailCheck;
     private String accountStatus;
     private String smsVerifyNo;
-    private String authToken;
+//    private String authToken;
     private String accessToken;
     private String refreshToken;
+    private String tokenExpiredDate;
 
     public void confirm(String password) {
         this.setAccountStatus("NML");

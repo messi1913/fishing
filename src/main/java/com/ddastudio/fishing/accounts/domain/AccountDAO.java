@@ -35,8 +35,9 @@ public class AccountDAO {
     public Optional<AccountDTO> getAccountById(Integer id) {
         return query.select()
                 .from(ACCOUNT)
-                .where(ACCOUNT.ID.eq(id))
+                .where(ACCOUNT.ID.equal(id))
                     .and(ACCOUNT.USE_YN.equal(USE))
+                    .and(ACCOUNT.ACCOUNT_STATUS.equal("NML"))
                 .fetchOptionalInto(AccountDTO.class);
     }
 

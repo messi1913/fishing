@@ -143,6 +143,7 @@ public class AccountControllerTest extends BaseControllerTest {
                                 fieldWithPath("smsVerifyNo").type(String.class).description("Verification Code for registration"),
                                 fieldWithPath("accessToken").type(String.class).description("Access Token of user"),
                                 fieldWithPath("refreshToken").type(String.class).description("Refresh Token of user "),
+                                fieldWithPath("tokenExpiredDate").type(String.class).description("Expired time of token "),
                                 fieldWithPath("_links.self.href").description("Link to self"),
                                 fieldWithPath("_links.update-account.href").description("Link to update user"),
                                 fieldWithPath("_links.profile.href").description("Link to profile")

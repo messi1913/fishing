@@ -35,7 +35,7 @@ public class CommonUtil {
         return  restTemplate.exchange(uri, method, httpEntity, responseType);
     }
 
-    public static Map<String, String> requestOauth(String userName, String userPassword) {
+    public static Map<String, Object> requestOauth(String userName, String userPassword) {
         RestTemplate restTemplate = BeanUtil.getBean(RestTemplate.class);
         AppProperties appProperties = BeanUtil.getBean(AppProperties.class);
 

@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,21 +94,37 @@ public class AccountService implements UserDetailsService {
         return accountDAO.getAccountById(id);
     }
 
+    public AccountDTO refreshOauthToken(AccountDTO accountDTO, Errors errors) {
+        Optional<Account> accountById = accountRepository.findById(accountDTO.getId());
+        if(accountById.isEmpty()){
+            errors.reject("Not exist user", "해당 사용자는 미가입 된 사용자 입니다.");
+            return accountDTO;
+        }
+        AccountDTO syncAccountDTO = modelMapper.map(accountById.get(), AccountDTO.class);
+        this.getOauthTokens(syncAccountDTO, errors);
+        return syncAccountDTO;
+    }
+
 
     private void getOauthTokens(AccountDTO accountDTO, Errors errors) {
-        Map<String, String> oauthToken = CommonUtil.requestOauth(accountDTO.getPhoneNo(), accountDTO.getSmsVerifyNo());
-        String accessToken = oauthToken.get("access_token");
+        Map<String, Object> oauthToken = CommonUtil.requestOauth(accountDTO.getPhoneNo(), accountDTO.getSmsVerifyNo());
+        String accessToken = String.valueOf(oauthToken.get("access_token"));
         if(Objects.isNull(accessToken)) {
             errors.rejectValue("Token Error", "Can not get access_token");
             return;
         }
 
-        String refreshToken = oauthToken.get("refresh_token");
+        String refreshToken = String.valueOf(oauthToken.get("refresh_token"));
         if(Objects.isNull(refreshToken)) {
             errors.rejectValue("Token Error", "Can not get refresh_token");
             return;
         }
 
+        int expireSeconds = (int)oauthToken.get("expires_in")+1;
+
+        String expirtedDate = LocalDateTime.now().plusSeconds(expireSeconds).format(DateTimeFormatter.BASIC_ISO_DATE);
+
+        accountDTO.setTokenExpiredDate(expirtedDate);
         accountDTO.setAccessToken(accessToken);
         accountDTO.setRefreshToken(refreshToken);
     }
